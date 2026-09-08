@@ -1,12 +1,14 @@
-import { memo } from 'react';
+import { memo, useMemo } from 'react';
 import {
   BashToolBlock,
   EditToolBlock,
   GenericToolBlock,
+  ReportFindingsToolBlock,
   TaskExecutionBlock,
+  parseReportFindingsInput,
 } from '../../toolBlocks';
 import type { EditToolItem } from '../../toolBlocks/EditToolBlock';
-import { EDIT_TOOL_NAMES, BASH_TOOL_NAMES, TASK_MANAGE_TOOL_NAMES, AGENT_TOOL_NAMES, isToolName, isTransientInternalToolName, normalizeToolName } from '../../../utils/toolConstants';
+import { EDIT_TOOL_NAMES, BASH_TOOL_NAMES, TASK_MANAGE_TOOL_NAMES, AGENT_TOOL_NAMES, REPORT_FINDINGS_TOOL_NAMES, isToolName, isTransientInternalToolName, normalizeToolName } from '../../../utils/toolConstants';
 import type { ClaudeContentBlock, ToolResultBlock } from '../../../types';
 
 /**
@@ -35,6 +37,9 @@ interface ToolUseBlockProps {
 
 export function ToolUseBlock({ block, messageIndex, isStreaming, findToolResult }: ToolUseBlockProps) {
   const toolName = normalizeToolName(block.name ?? '');
+  // Parse once per input snapshot: rebuilding the findings array on every
+  // streaming re-render would defeat the memo on the specialized block.
+  const report = useMemo(() => parseReportFindingsInput(block.input), [block.input]);
 
   if (toolName === 'todowrite' || toolName === 'update_plan' || TASK_MANAGE_TOOL_NAMES.has(toolName)) {
     return null;
@@ -42,6 +47,16 @@ export function ToolUseBlock({ block, messageIndex, isStreaming, findToolResult 
 
   if (!isStreaming && isTransientInternalToolName(block.name)) {
     return null;
+  }
+
+  if (REPORT_FINDINGS_TOOL_NAMES.has(toolName) && report) {
+    return (
+      <ReportFindingsToolBlock
+        data={report}
+        result={findToolResult(block.id, messageIndex)}
+        toolId={block.id}
+      />
+    );
   }
 
   if (AGENT_TOOL_NAMES.has(toolName)) {
