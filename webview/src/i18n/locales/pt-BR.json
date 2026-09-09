@@ -1500,7 +1500,32 @@
     "bashGroupAllCompleted": "Todos Concluídos",
     "bashGroupFailed": "falhou",
     "updatePlan": "Atualizar Plano",
-    "applyPatch": "Aplicar Patch"
+    "applyPatch": "Aplicar Patch",
+    "reportFindings": {
+      "title": "Constatações da revisão",
+      "findingsCount_one": "{{count}} constatação",
+      "findingsCount_other": "{{count}} constatações",
+      "confirmedCount_one": "{{count}} confirmada",
+      "confirmedCount_other": "{{count}} confirmadas",
+      "plausibleCount_one": "{{count}} a revisar",
+      "plausibleCount_other": "{{count}} a revisar",
+      "confirmed": "Confirmada",
+      "plausible": "A revisar",
+      "fixed": "Corrigida",
+      "skipped": "Ignorada",
+      "noChangeNeeded": "Nenhuma alteração necessária",
+      "empty": "Nenhuma constatação",
+      "summaryLabel": "Resumo da revisão",
+      "summary": "Resumo",
+      "failureScenario": "Cenário de falha",
+      "reviewLevel": "Nível de revisão: {{level}}",
+      "openFile": "Abrir {{filePath}}",
+      "expandFinding": "Expandir constatação",
+      "collapseFinding": "Recolher constatação",
+      "expandReport": "Expandir constatações",
+      "collapseReport": "Recolher constatações",
+      "untitled": "Constatação sem título"
+    }
   },
   "todo": {
     "inProgress": "Em Andamento {{completed}}/{{total}} tarefas",
