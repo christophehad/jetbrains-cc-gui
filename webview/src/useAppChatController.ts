@@ -1,4 +1,4 @@
-import { useCallback, useRef } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import type { Dispatch, SetStateAction } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
@@ -175,6 +175,16 @@ export const useAppChatController = ({
     getOrCreateStreamingAssistantIndex, patchAssistantForStreaming,
   } = useStreamingMessages();
 
+  // Ref indirection breaks a hook-ordering cycle: useSessionManagement wants the
+  // message queue's clearQueue, but that hook sits further down the chain
+  // (useMessageQueue needs executeMessage, which needs forceCreateNewSession
+  // from useSessionManagement). The stable wrapper keeps beginSessionTransition's
+  // useCallback from re-creating on every render.
+  const clearMessageQueueRef = useRef<() => void>(() => {});
+  const clearQueuedMessages = useCallback(() => {
+    clearMessageQueueRef.current();
+  }, []);
+
   // ── Session management ──
   const {
     showNewSessionConfirm, showInterruptConfirm,
@@ -194,6 +204,7 @@ export const useAppChatController = ({
     setSubagentHistories,
     clearToasts, addToast, t,
     applyHistoryModel,
+    clearQueuedMessages,
   });
 
   useHistoryLoader({ currentView, currentProvider });
@@ -233,6 +244,7 @@ export const useAppChatController = ({
     customSessionTitleRef, currentSessionIdRef, updateHistoryTitle, applyHistoryTitleLocal,
     setCustomSessionTitle,
     setPermissionDialogTimeoutSeconds,
+    clearQueuedMessages,
   });
 
   // ── Message processing ──
@@ -274,7 +286,13 @@ export const useAppChatController = ({
     queue: messageQueue,
     enqueue: enqueueMessage,
     dequeue: dequeueMessage,
+    clearQueue,
   } = useMessageQueue({ isLoading: loading, onExecute: executeMessage });
+
+  // Point the session-transition indirection at the real clearQueue.
+  useEffect(() => {
+    clearMessageQueueRef.current = clearQueue;
+  }, [clearQueue]);
 
   // handleSubmit with queue support (new session and local commands bypass loading check)
   const handleSubmit = useCallback((content: string, attachments?: Attachment[]) => {
