@@ -17,7 +17,11 @@ const TASK_DETAILS_STYLE: React.CSSProperties = {
 };
 
 const DIFF_CONTAINER_STYLE: React.CSSProperties = {
-  // Use monospace font to ensure consistent tab and space widths
+  // Use monospace font to ensure consistent tab and space widths. Declaring it on
+  // the container alone is not enough: the global `* { font-family }` UI-font rule
+  // in base.less matches every descendant directly and beats inheritance, so the
+  // container also carries the .code-font-surface class (see base.less) to push the
+  // code font back onto all of them.
   fontFamily: 'var(--idea-editor-font-family, monospace)',
   fontSize: '12px',
   lineHeight: 1.5,
@@ -149,7 +153,7 @@ interface EditDiffViewProps {
 const EditDiffView = function EditDiffView({ diff }: EditDiffViewProps) {
   return (
     <div className="task-details" style={TASK_DETAILS_STYLE}>
-      <div style={DIFF_CONTAINER_STYLE}>
+      <div className="code-font-surface" style={DIFF_CONTAINER_STYLE}>
         {/* Inner wrapper stretches to scrollWidth so row backgrounds fill the full width */}
         <div style={INNER_WRAPPER_STYLE}>
         {diff.lines.map((line, index) => {

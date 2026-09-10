@@ -96,7 +96,7 @@ const EditFileHeader = function EditFileHeader({
           {displayPath}
         </span>
         {lineInfo.start && (
-          <span className="tool-title-summary" style={LINE_INFO_STYLE}>
+          <span className="tool-title-summary code-font-surface" style={LINE_INFO_STYLE}>
             {lineInfo.end && lineInfo.end !== lineInfo.start
               ? t('tools.lineRange', { start: lineInfo.start, end: lineInfo.end })
               : t('tools.lineSingle', { line: lineInfo.start })}
@@ -104,13 +104,13 @@ const EditFileHeader = function EditFileHeader({
           </span>
         )}
         {!lineInfo.start && extraEditCount > 0 && (
-          <span className="tool-title-summary" style={LINE_INFO_STYLE}>
+          <span className="tool-title-summary code-font-surface" style={LINE_INFO_STYLE}>
             +{extraEditCount}{t('tools.editLocationsSuffix')}
           </span>
         )}
 
         {(additions > 0 || deletions > 0) && (
-          <span style={STATS_STYLE}>
+          <span className="code-font-surface" style={STATS_STYLE}>
             {additions > 0 && <span style={ADDED_TEXT_STYLE}>+{additions}</span>}
             {additions > 0 && deletions > 0 && <span style={STATS_SPACER_STYLE} />}
             {deletions > 0 && <span style={DELETED_TEXT_STYLE}>-{deletions}</span>}
