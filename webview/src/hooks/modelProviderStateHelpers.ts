@@ -22,6 +22,7 @@ export interface ProviderModelSelection {
   grok: string;
   kimi: string;
   minimax: string;
+  zcode: string;
   opencode: string;
   pi: string;
   omp: string;
@@ -35,6 +36,7 @@ export interface ProviderPermissionModes {
   grok: PermissionMode;
   kimi: PermissionMode;
   minimax: PermissionMode;
+  zcode: PermissionMode;
   opencode: PermissionMode;
   pi: PermissionMode;
   omp: PermissionMode;
@@ -48,6 +50,7 @@ export function selectedModelForProvider(providerId: string, models: ProviderMod
     case 'grok': return models.grok;
     case 'kimi': return models.kimi;
     case 'minimax': return models.minimax;
+    case 'zcode': return models.zcode;
     case 'opencode': return models.opencode;
     case 'pi': return models.pi;
     case 'omp': return models.omp;
@@ -74,6 +77,7 @@ export function resolveProviderPermissionMode(
     case 'grok': return normalizeCliPermissionMode(modes.grok, providerId);
     case 'kimi': return normalizeCliPermissionMode(modes.kimi, providerId);
     case 'minimax': return normalizeCliPermissionMode(modes.minimax, providerId);
+    case 'zcode': return normalizeCliPermissionMode(modes.zcode, providerId);
     case 'opencode': return normalizeCliPermissionMode(modes.opencode, providerId);
     case 'pi': return normalizeCliPermissionMode(modes.pi, providerId);
     case 'omp': return normalizeCliPermissionMode(modes.omp, providerId);
@@ -96,6 +100,7 @@ export function resolveProviderModel(
     case 'grok': return models.grok;
     case 'kimi': return models.kimi;
     case 'minimax': return models.minimax;
+    case 'zcode': return models.zcode;
     case 'opencode': return models.opencode;
     case 'pi': return models.pi;
     case 'omp': return models.omp;
@@ -110,6 +115,7 @@ export interface CliModeSelectActions {
   setGrokPermissionMode: (mode: PermissionMode) => void;
   setKimiPermissionMode: (mode: PermissionMode) => void;
   setMiniMaxPermissionMode: (mode: PermissionMode) => void;
+  setZcodePermissionMode: (mode: PermissionMode) => void;
   setOpenCodePermissionMode: (mode: PermissionMode) => void;
   setPiPermissionMode: (mode: PermissionMode) => void;
   setOmpPermissionMode: (mode: PermissionMode) => void;
@@ -134,6 +140,7 @@ export function applyCliModeSelect(
     case 'grok': actions.setGrokPermissionMode(cliMode); break;
     case 'kimi': actions.setKimiPermissionMode(cliMode); break;
     case 'minimax': actions.setMiniMaxPermissionMode(cliMode); break;
+    case 'zcode': actions.setZcodePermissionMode(cliMode); break;
     case 'opencode': actions.setOpenCodePermissionMode(cliMode); break;
     case 'pi': actions.setPiPermissionMode(cliMode); break;
     case 'omp': {
@@ -162,6 +169,7 @@ export interface ModelSelectActions {
   setSelectedGrokModel: (modelId: string) => void;
   setSelectedKimiModel: (modelId: string) => void;
   setSelectedMiniMaxModel: (modelId: string) => void;
+  setSelectedZcodeModel: (modelId: string) => void;
   setSelectedOpenCodeModel: (modelId: string) => void;
   setSelectedPiModel: (modelId: string) => void;
   setSelectedOmpModel: (modelId: string) => void;
@@ -209,6 +217,7 @@ export function applyModelSelect(
     grok: actions.setSelectedGrokModel,
     kimi: actions.setSelectedKimiModel,
     minimax: actions.setSelectedMiniMaxModel,
+    zcode: actions.setSelectedZcodeModel,
     opencode: actions.setSelectedOpenCodeModel,
     pi: actions.setSelectedPiModel,
     dsh: actions.setSelectedDshModel,

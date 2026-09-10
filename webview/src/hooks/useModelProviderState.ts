@@ -13,6 +13,7 @@ import { useCodexProvider } from './providers/useCodexProvider';
 import { useGrokProvider } from './providers/useGrokProvider';
 import { useKimiProvider } from './providers/useKimiProvider';
 import { useMiniMaxProvider } from './providers/useMiniMaxProvider';
+import { useZcodeProvider } from './providers/useZcodeProvider';
 import { useOpenCodeProvider } from './providers/useOpenCodeProvider';
 import { usePiProvider } from './providers/usePiProvider';
 import { useOmpProvider } from './providers/useOmpProvider';
@@ -73,6 +74,7 @@ export function useModelProviderState({ addToast, t }: UseModelProviderStateOpti
   const grok = useGrokProvider();
   const kimi = useKimiProvider();
   const miniMax = useMiniMaxProvider();
+  const zcode = useZcodeProvider();
   const openCode = useOpenCodeProvider();
   const pi = usePiProvider();
   const omp = useOmpProvider();
@@ -108,6 +110,10 @@ export function useModelProviderState({ addToast, t }: UseModelProviderStateOpti
     miniMaxPermissionMode, setMiniMaxPermissionMode,
   } = miniMax;
   const {
+    selectedZcodeModel, setSelectedZcodeModel,
+    zcodePermissionMode, setZcodePermissionMode,
+  } = zcode;
+  const {
     selectedOpenCodeModel, setSelectedOpenCodeModel,
     openCodePermissionMode, setOpenCodePermissionMode,
   } = openCode;
@@ -135,6 +141,7 @@ export function useModelProviderState({ addToast, t }: UseModelProviderStateOpti
     setSelectedGrokModel,
     setSelectedKimiModel,
     setSelectedMiniMaxModel,
+    setSelectedZcodeModel,
     setSelectedOpenCodeModel,
     setSelectedPiModel,
     setSelectedOmpModel,
@@ -142,6 +149,7 @@ export function useModelProviderState({ addToast, t }: UseModelProviderStateOpti
     setGrokPermissionMode,
     setKimiPermissionMode,
     setMiniMaxPermissionMode,
+    setZcodePermissionMode,
     setOpenCodePermissionMode,
     setPiPermissionMode,
     setOmpPermissionMode,
@@ -159,6 +167,7 @@ export function useModelProviderState({ addToast, t }: UseModelProviderStateOpti
     selectedGrokModel,
     selectedKimiModel,
     selectedMiniMaxModel,
+    selectedZcodeModel,
     selectedOpenCodeModel,
     selectedPiModel,
     selectedOmpModel,
@@ -166,6 +175,7 @@ export function useModelProviderState({ addToast, t }: UseModelProviderStateOpti
     grokPermissionMode,
     kimiPermissionMode,
     miniMaxPermissionMode,
+    zcodePermissionMode,
     openCodePermissionMode,
     piPermissionMode,
     ompPermissionMode,
@@ -183,6 +193,7 @@ export function useModelProviderState({ addToast, t }: UseModelProviderStateOpti
     grok: selectedGrokModel,
     kimi: selectedKimiModel,
     minimax: selectedMiniMaxModel,
+    zcode: selectedZcodeModel,
     opencode: selectedOpenCodeModel,
     pi: selectedPiModel,
     omp: selectedOmpModel,
@@ -233,6 +244,7 @@ export function useModelProviderState({ addToast, t }: UseModelProviderStateOpti
         setGrokPermissionMode,
         setKimiPermissionMode,
         setMiniMaxPermissionMode,
+        setZcodePermissionMode,
         setOpenCodePermissionMode,
         setPiPermissionMode,
         setOmpPermissionMode,
@@ -252,6 +264,7 @@ export function useModelProviderState({ addToast, t }: UseModelProviderStateOpti
     setGrokPermissionMode,
     setKimiPermissionMode,
     setMiniMaxPermissionMode,
+    setZcodePermissionMode,
     setOpenCodePermissionMode,
     setPiPermissionMode,
     setOmpPermissionMode,
@@ -266,6 +279,7 @@ export function useModelProviderState({ addToast, t }: UseModelProviderStateOpti
       setSelectedGrokModel,
       setSelectedKimiModel,
       setSelectedMiniMaxModel,
+      setSelectedZcodeModel,
       setSelectedOpenCodeModel,
       setSelectedPiModel,
       setSelectedOmpModel,
@@ -282,6 +296,7 @@ export function useModelProviderState({ addToast, t }: UseModelProviderStateOpti
     setSelectedGrokModel,
     setSelectedKimiModel,
     setSelectedMiniMaxModel,
+    setSelectedZcodeModel,
     setSelectedOpenCodeModel,
     setSelectedPiModel,
     setSelectedOmpModel,
@@ -299,6 +314,7 @@ export function useModelProviderState({ addToast, t }: UseModelProviderStateOpti
       grok: grokPermissionMode,
       kimi: kimiPermissionMode,
       minimax: miniMaxPermissionMode,
+      zcode: zcodePermissionMode,
       opencode: openCodePermissionMode,
       pi: piPermissionMode,
       omp: ompPermissionMode,
@@ -317,6 +333,7 @@ export function useModelProviderState({ addToast, t }: UseModelProviderStateOpti
       grok: selectedGrokModel,
       kimi: selectedKimiModel,
       minimax: selectedMiniMaxModel,
+      zcode: selectedZcodeModel,
       opencode: selectedOpenCodeModel,
       pi: selectedPiModel,
       omp: selectedOmpModel,
@@ -330,6 +347,7 @@ export function useModelProviderState({ addToast, t }: UseModelProviderStateOpti
     grokPermissionMode,
     kimiPermissionMode,
     miniMaxPermissionMode,
+    zcodePermissionMode,
     openCodePermissionMode,
     piPermissionMode,
     ompPermissionMode,
@@ -339,6 +357,7 @@ export function useModelProviderState({ addToast, t }: UseModelProviderStateOpti
     selectedGrokModel,
     selectedKimiModel,
     selectedMiniMaxModel,
+    selectedZcodeModel,
     selectedOpenCodeModel,
     selectedPiModel,
     selectedOmpModel,
@@ -386,6 +405,7 @@ export function useModelProviderState({ addToast, t }: UseModelProviderStateOpti
     ...grok,
     ...kimi,
     ...miniMax,
+    ...zcode,
     ...openCode,
     ...pi,
     ...omp,

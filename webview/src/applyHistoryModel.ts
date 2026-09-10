@@ -23,6 +23,7 @@ export interface ApplyHistoryModelDeps {
   setSelectedGrokModel: (model: string) => void;
   setSelectedKimiModel: (model: string) => void;
   setSelectedMiniMaxModel: (model: string) => void;
+  setSelectedZcodeModel: (model: string) => void;
   setSelectedOpenCodeModel: (model: string) => void;
   setSelectedPiModel: (model: string) => void;
   setSelectedDshModel: (model: string) => void;
@@ -56,6 +57,7 @@ export const createApplyHistoryModel = ({
     setSelectedGrokModel,
     setSelectedKimiModel,
     setSelectedMiniMaxModel,
+    setSelectedZcodeModel,
     setSelectedOpenCodeModel,
     setSelectedPiModel,
     setSelectedDshModel,
@@ -82,6 +84,9 @@ export const createApplyHistoryModel = ({
         sendBridgeEvent('set_model', model);
       } else if (provider === 'minimax') {
         setSelectedMiniMaxModel(model);
+        sendBridgeEvent('set_model', model);
+      } else if (provider === 'zcode') {
+        setSelectedZcodeModel(model);
         sendBridgeEvent('set_model', model);
       } else if (provider === 'opencode') {
         setSelectedOpenCodeModel(model);

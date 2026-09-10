@@ -238,7 +238,8 @@
           "opencode": "OpenCode",
           "pi": "PI CLI",
           "omp": "OMP CLI",
-          "minimax": "MiniMax Code"
+          "minimax": "MiniMax Code",
+          "zcode": "ZCode"
         },
         "currentProviderAuto": "Currently using automatic selection: {{provider}}",
         "currentProviderManual": "Currently using manually selected provider: {{provider}}",
@@ -947,6 +948,10 @@
         "minimax": {
           "name": "MiniMax Code",
           "description": "MiniMax 터미널 코딩 에이전트. Node.js 22.19+ / 24+ 필요(23 미지원); 명령: minimax / mcode"
+        },
+        "zcode": {
+          "name": "ZCode",
+          "description": "GLM 모델을 사용하는 Zhipu ZCode 데스크톱 코딩 앱"
         },
         "grok": {
           "name": "Grok CLI",
@@ -1832,6 +1837,9 @@
     },
     "minimax": {
       "label": "MiniMax Code"
+    },
+    "zcode": {
+      "label": "ZCode"
     },
     "gemini": {
       "label": "Gemini Cli"

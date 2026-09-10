@@ -238,7 +238,8 @@
           "opencode": "OpenCode",
           "pi": "PI CLI",
           "omp": "OMP CLI",
-          "minimax": "MiniMax Code"
+          "minimax": "MiniMax Code",
+          "zcode": "ZCode"
         },
         "currentProviderAuto": "Currently using automatic selection: {{provider}}",
         "currentProviderManual": "Currently using manually selected provider: {{provider}}",
@@ -853,6 +854,10 @@
         "minimax": {
           "name": "MiniMax Code",
           "description": "MiniMax terminal coding agent. Node.js 22.19+ / 24+ (23 नहीं) आवश्यक; कमांड: minimax / mcode"
+        },
+        "zcode": {
+          "name": "ZCode",
+          "description": "GLM मॉडल के साथ Zhipu ZCode डेस्कटॉप कोडिंग ऐप"
         },
         "grok": {
           "name": "Grok CLI",
@@ -1730,6 +1735,9 @@
     },
     "minimax": {
       "label": "MiniMax Code"
+    },
+    "zcode": {
+      "label": "ZCode"
     },
     "gemini": {
       "label": "Gemini Cli"
